@@ -4,10 +4,16 @@ declare(strict_types=1);
 class Hero {
     private ?int $id = null;
     private string $name;
+    private string $class;
     private int $health_point;
 
-    public function __construct(string $name = '', int $health_point = 100) {
+    public function __construct(string $name = '', string $class = '', int $health_point = 100) {
     $this->name = $name;
+    if ($class != 'psyker' && $class != 'zealot' && $class != 'veteran' && $class != 'ogryn' && $class != 'arbites') {
+        $this->class = 'veteran';
+    } else {
+        $this->class = $class;
+    }
     $this->health_point = $health_point;
     }
 
@@ -25,6 +31,18 @@ class Hero {
 
     public function setName(string $name) {
         $this->name = $name;
+    }
+
+    public function getClass() {
+        return $this->class;
+    }
+
+    public function setClass(string $class) {
+        if ($class != 'psyker' && $class != 'zealot' && $class != 'veteran' && $class != 'ogryn' && $class != 'arbites') {
+            $this->class = 'veteran';
+        } else {
+            $this->class = $class;
+        }
     }
 
     public function getHealthPoint() {

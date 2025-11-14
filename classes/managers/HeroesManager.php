@@ -13,14 +13,29 @@ class HeroesManager {
     }
 
     public function add(Hero $hero) {
-        $stmt = $this->db->prepare('INSERT INTO heroes (name, health_point) VALUES (:name, :health_point)');
+        $stmt = $this->db->prepare('INSERT INTO heroes (name, class, health_point) VALUES (:name, :class, :health_point)');
         $stmt->execute([
         ':name' => $hero->getName(),
+        ':class' => $hero->getClass(),
         ':health_point' => $hero->getHealthPoint(),
         ]);
 
         $id = (int)$this->db->lastInsertId();
         $hero->setId($id);
+    }
+
+    public function findAll() {
+        $stmt = $this->db->query('SELECT * FROM heroes ORDER BY id DESC');
+        $rows = $stmt->fetchAll();
+
+        $list = [];
+        foreach ($rows as $row) {
+        $hero = new Hero((string)$row['name'], (string)$row['class'], (int)$row['health_point']);
+        $hero->setId((int)$row['id']);
+        $list[] = $hero;
+        }
+
+        return $list;
     }
 
     public function findAllAlive() {
@@ -29,7 +44,21 @@ class HeroesManager {
 
         $list = [];
         foreach ($rows as $row) {
-        $hero = new Hero($row['name'], (int)$row['health_point']);
+        $hero = new Hero((string)$row['name'], (string)$row['class'], (int)$row['health_point']);
+        $hero->setId((int)$row['id']);
+        $list[] = $hero;
+        }
+
+        return $list;
+    }
+
+    public function findAllDead() {
+        $stmt = $this->db->query('SELECT * FROM heroes WHERE health_point = 0 ORDER BY id DESC');
+        $rows = $stmt->fetchAll();
+
+        $list = [];
+        foreach ($rows as $row) {
+        $hero = new Hero((string)$row['name'], (string)$row['class'], (int)$row['health_point']);
         $hero->setId((int)$row['id']);
         $list[] = $hero;
         }
@@ -46,7 +75,7 @@ class HeroesManager {
         return null;
         }
 
-        $hero = new Hero($row['name'], (int)$row['health_point']);
+        $hero = new Hero((string)$row['name'], (string)$row['class'], (int)$row['health_point']);
         $hero->setId((int)$row['id']);
         return $hero;
     }
@@ -67,5 +96,10 @@ class HeroesManager {
         $stmt = $this->db->prepare('SELECT COUNT(*) FROM heroes WHERE name = :name');
         $stmt->execute([':name' => $name]);
         return (int)$stmt->fetchColumn() > 0;
+    }
+
+    public function delete(int $id) {
+        $stmt = $this->db->prepare('DELETE FROM heroes WHERE id = :id');
+        $stmt->execute([':id' => $id]);
     }
 }
