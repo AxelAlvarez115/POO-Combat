@@ -57,10 +57,41 @@ class Hero {
         return $this->health_point > 0;
     }
 
-    public function hit(Monster $monster) {
+    public function hit(Monster $monster, Hero $hero) {
+        if ($hero->getClass() === 'psyker') {
+            $damage = random_int(500, 1000);
+            if (in_array($monster->getClass(), ['monstrosity', 'captain', 'ritualist'])) {
+                echo "Critical hit!";
+                $damage *= 8;
+            }
 
-    $damage = random_int(5, 25);
-    $monster->setHealthPoint($monster->getHealthPoint() - $damage);
-    return sprintf("%s inflige %d dégâts à %s.", $this->getName(), $damage, $monster->getName());
+        } elseif ($hero->getClass() === 'zealot') {
+            $damage = random_int(100, 700);
+            if ($monster->getClass() === 'monstrosity') {
+                $damage *= 10;
+            }
+
+        } elseif ($hero->getClass() === 'veteran') {
+            $damage = random_int(600, 700);
+            if (in_array($monster->getClass(), ['elite', 'specialist'])) {
+                $damage *= 5;
+            }
+
+        } elseif ($hero->getClass() === 'ogryn') {
+            $damage = random_int(300, 400);
+
+        } elseif ($hero->getClass() === 'arbites') {
+            $damage = random_int(700, 800);
+            if ($monster->getClass() === 'captain') {
+                $damage *= 3;
+            }
+
+        } else {
+            $damage = random_int(5, 25);
+        }
+
+        $monster->setHealthPoint($monster->getHealthPoint() - $damage);
+        return sprintf("%s inflige %d dégâts à %s.", $this->getName(), $damage, $monster->getName());
     }
+
 }

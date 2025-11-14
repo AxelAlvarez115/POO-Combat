@@ -63,14 +63,14 @@ class FightsManager {
 
         while ($hero->isAlive() && $monster->isAlive()) {
 
-        $log[] = $monster->hit($hero);
+        $log[] = $monster->hit($hero, $monster);
 
         if (! $hero->isAlive()) {
         $log[] = sprintf("%s est mort. Fin du combat.", $hero->getName());
         break;
         }
 
-        $log[] = $hero->hit($monster);
+        $log[] = $hero->hit($monster, $hero);
 
         if (! $monster->isAlive()) {
         $log[] = sprintf("%s a vaincu %s !", $hero->getName(), $monster->getName());

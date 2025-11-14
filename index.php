@@ -39,7 +39,7 @@ require_once 'classes/basics/Hero.php';
         }
         ?>
         <div class="flex flex-col">
-            <h1 class="text-3xl text-cyan-600 text-center font-bold mb-4">Create Your Hero</h1>
+            <h1 class="text-3xl text-red-900 text-center font-bold mb-4">- Create Your Hero -</h1>
                 <form class="flex gap-2 bg-gray-900 p-4" method="post" action="">
                 <div>
                     <label class="block mb-1" for="name">Hero Name</label>
