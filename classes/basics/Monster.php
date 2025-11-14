@@ -6,7 +6,7 @@ class Monster {
     private string $name;
     private int $health_point;
 
-    public function __construct(string $name = 'Monster', int $health_point = 100) {
+    public function __construct(string $name = '', int $health_point = 100) {
         $this->name = $name;
         $this->health_point = $health_point;
     }

@@ -14,15 +14,19 @@ require_once 'classes/basics/Hero.php';
 </head>
 <body>
     <main>
-        <?php if(isset($_POST['name'])): ?>
-            <?php
+        <?php if (isset($_GET['created'])): ?>
+            <p style="color: green;">Hero created successfully!</p>
+        <?php endif; ?>
+        <?php 
+        if (isset($_POST['name'])) {
             $heroesManager = new HeroesManager($db); 
             $hero = new Hero($_POST['name']);
             $heroesManager->add($hero);
-            ?>
-            <p>Hero <?php echo htmlspecialchars($_POST['name']); ?> created!</p>
-            <?php $_POST = []; ?>
-        <?php endif;  ?>
+
+            header("Location: " . $_SERVER['PHP_SELF'] . "?created=1");
+            exit;
+        }
+        ?>
         <form method="post" action="">
             <input type="text" name="name" placeholder="Hero name" required>
             <button type="submit">Create Hero</button>
