@@ -35,7 +35,7 @@ $monster = $fightManager->createMonster();
                         $monsterImg = htmlspecialchars(preg_replace('/\s+/', '_', $monster->getName()));
                     ?>
                     <img 
-                        class="border-2 border-gray-700 bg-black w-64 h-64 object-cover rounded-lg shadow-lg mb-3" 
+                        class="border-2 border-gray-700 bg-red-950 w-64 h-64 object-cover rounded-lg shadow-lg mb-3" 
                         src="assets/img/monsters/<?= $monsterImg ?>.png" 
                         alt="<?= htmlspecialchars($monster->getName()); ?>"
                     >
@@ -44,7 +44,7 @@ $monster = $fightManager->createMonster();
                     <p>HP : <span class="text-green-400 font-semibold"><?= $monster->getHealthPoint(); ?></span></p>
                 </div>
                 <div class="flex gap-4 bg-gray-800 w-full p-4 rounded-md shadow mb-6">
-                    <img class="border-2 p-1 border-gray-700 bg-gray-900 w-50 object-cover rounded-lg shadow-lg mb-3" src="assets/img/heroes/<?= htmlspecialchars($hero->getClass()); ?>.webp" alt="">
+                    <img class="border-2 border-gray-700 bg-gray-900 w-50 object-cover rounded-lg shadow-lg mb-3" src="assets/img/heroes/<?= htmlspecialchars($hero->getClass()); ?>.webp" alt="">
                     <p class="text-lg">
                         <strong>Hero :</strong> 
                         <?= htmlspecialchars($hero->getName()); ?>

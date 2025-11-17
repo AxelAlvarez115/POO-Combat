@@ -9,7 +9,7 @@ class Monster {
 
     public function __construct(string $name, string $class, int $health_point = 100) {
         $this->name = $name;
-        if ($class != 'infantry' && $class != 'daemon' && $class != 'armored' && $class != 'veteran' && $class != 'ogryn' && $class != 'arbites') {
+        if ($class != 'infantry' && $class != 'roamer' && $class != 'specialist' && $class != 'elite' && $class != 'monstrosity' && $class != 'captain' && $class != 'ritualist') {
             $this->class = 'infantry';
         } else {
             $this->class = $class;
@@ -59,19 +59,19 @@ class Monster {
 
     public function hit(Hero $hero, Monster $monster) {
         if ($monster->getClass() === 'infantry') {
-            $damage = random_int(10, 30);
+            $damage = random_int(3, 5);
         } elseif ($monster->getClass() === 'roamer') {
-            $damage = random_int(20, 40);
+            $damage = random_int(5, 8);
         } elseif ($monster->getClass() === 'specialist') {
-            $damage = random_int(30, 60);
+            $damage = random_int(15, 20);
         } elseif ($monster->getClass() === 'elite') {
-            $damage = random_int(50, 100);
+            $damage = random_int(17, 23);
         } elseif ($monster->getClass() === 'monstrosity') {
-            $damage = random_int(100, 200);
+            $damage = random_int(25, 30);
         } elseif ($monster->getClass() === 'captain') {
-            $damage = random_int(150, 300);
+            $damage = random_int(25, 30);
         } elseif ($monster->getClass() === 'ritualist') {
-            $damage = random_int(5, 20);
+            $damage = random_int(5, 6);
         } else {
             $damage = random_int(5, 20);
         }
