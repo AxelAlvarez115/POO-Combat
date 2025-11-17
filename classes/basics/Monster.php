@@ -9,8 +9,8 @@ class Monster {
 
     public function __construct(string $name, string $class, int $health_point = 100) {
         $this->name = $name;
-        if ($class != 'daemon' && $class != 'armored' && $class != 'veteran' && $class != 'ogryn' && $class != 'arbites') {
-            $this->class = 'veteran';
+        if ($class != 'infantry' && $class != 'daemon' && $class != 'armored' && $class != 'veteran' && $class != 'ogryn' && $class != 'arbites') {
+            $this->class = 'infantry';
         } else {
             $this->class = $class;
         }
@@ -39,7 +39,7 @@ class Monster {
 
     public function setClass(string $class) {
         if ($class != 'infantry' && $class != 'roamer' && $class != 'specialist' && $class != 'elite' && $class != 'monstrosity' && $class != 'captain' && $class != 'ritualist') {
-            $this->class = 'veteran';
+            $this->class = 'infantry';
         } else {
             $this->class = $class;
         }

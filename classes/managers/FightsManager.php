@@ -7,7 +7,7 @@ class FightsManager {
     $monsters = [
         [ 'name' => 'Poxwalker',            'hp' => 375,  'class' => 'infantry' ],
         [ 'name' => 'Groaner',              'hp' => 300,  'class' => 'infantry' ],
-        [ 'name' => 'Mobebian 21st',        'hp' => 625,  'class' => 'infantry' ],
+        [ 'name' => 'Moebebian 21st',        'hp' => 625,  'class' => 'infantry' ],
 
         [ 'name' => 'Scab Bruiser',         'hp' => 815,  'class' => 'roamer' ],
         [ 'name' => 'Scab Shooter',         'hp' => 500,  'class' => 'roamer' ],
